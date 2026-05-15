@@ -223,8 +223,15 @@ export function useJarvis() {
     setTranscript("");
     setIsThinking(true);
 
+    if (!process.env.GEMINI_API_KEY) {
+      const warning = "Sir, the AI Neural Link is currently offline. Please ensure the GEMINI_API_KEY is configured in your deployment environment.";
+      addMessage('assistant', warning);
+      speak(warning);
+      return;
+    }
+
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
+      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
       const history = messages.slice(-10).map(m => `${m.role === 'user' ? 'User' : 'Jarvis'}: ${m.content}`).join('\n');
       const localContext = localFiles.length > 0 ? `\nLOCAL FILE ACCESS GRANTED. Current directory contents:\n${localFiles.join('\n')}` : '';
 
