@@ -30,7 +30,8 @@ export default function App() {
     stopListening,
     handleCommand,
     initAudio,
-    requestLocalAccess
+    requestLocalAccess,
+    startDeployment
   } = useJarvis();
 
   const [input, setInput] = useState("");
@@ -273,6 +274,23 @@ export default function App() {
                     className="px-6 py-2 bg-emerald-500/20 border border-emerald-500/40 rounded-lg font-mono text-[10px] uppercase tracking-widest hover:bg-emerald-500/40 transition-all text-emerald-300"
                   >
                     Establish Link
+                  </button>
+                </div>
+
+                {/* GitHub Deployment Card */}
+                <div className="col-span-full p-6 border border-blue-500/20 bg-blue-500/5 rounded-xl flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <RefreshCcw className="w-6 h-6 text-blue-400 animate-spin-slow" />
+                    <div>
+                      <div className="font-mono text-sm uppercase text-blue-100">GitHub Pages Uplink</div>
+                      <div className="text-[10px] opacity-40 uppercase">Dispatch production package via CI/CD Protocol</div>
+                    </div>
+                  </div>
+                  <button 
+                    onClick={startDeployment}
+                    className="px-6 py-2 bg-blue-500/20 border border-blue-500/40 rounded-lg font-mono text-[10px] uppercase tracking-widest hover:bg-blue-500/40 transition-all text-blue-300"
+                  >
+                    Deploy to Web
                   </button>
                 </div>
               </div>

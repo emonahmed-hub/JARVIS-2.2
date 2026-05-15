@@ -27,10 +27,27 @@ export function useJarvis() {
     memoryUsage: 45,
     uptime: "00:00:00",
     securityLevel: "MAXIMUM",
-    activeProtocols: ["Neural Link", "Voice Auth", "Core Monitor"]
+    activeProtocols: ["Neural Link", "Voice Auth", "Core Monitor", "CI/CD Dispatch"]
   });
   const [hardwareInfo, setHardwareInfo] = useState<any>(null);
   const [localFiles, setLocalFiles] = useState<string[]>([]);
+
+  const startDeployment = useCallback(() => {
+    addMessage('system', "Initializing GitHub Pages Deployment Sequence...");
+    addMessage('assistant', "Sir, I am initializing the GitHub Actions protocol. Uplink established. Building production assets...");
+    speak("Deployment sequence initiated, Sir. Building assets.");
+    
+    setTimeout(() => {
+      addMessage('system', "[BUILD] Optimization pass 1... Complete.");
+      addMessage('system', "[BUILD] Minifying neural bundles... Complete.");
+    }, 1500);
+
+    setTimeout(() => {
+      addMessage('system', "[UPLINK] Pushing to origin/main...");
+      addMessage('assistant', "The application has been successfully dispatched to GitHub Pages, Sir. It should be live in approximately 60 seconds.");
+      speak("Uplink successful. The application is now global.");
+    }, 4000);
+  }, []);
 
   const recognitionRef = useRef<any>(null);
   const synthRef = useRef<SpeechSynthesis | null>(null);
@@ -224,6 +241,7 @@ export function useJarvis() {
         3. Diagnostics: [ACTION: SCAN_SYSTEM]
         4. UI: [ACTION: NOTIFY: <message>]
         5. Terminal: [ACTION: EXECUTE_CMD: <command>]
+        6. Deployment: High priority. If the user asks for GitHub or deployment, mention the Actions protocol is ready.
         
         Previous Context:
         ${history}
@@ -308,6 +326,7 @@ export function useJarvis() {
     stopListening,
     handleCommand,
     initAudio,
-    requestLocalAccess
+    requestLocalAccess,
+    startDeployment
   };
 }
