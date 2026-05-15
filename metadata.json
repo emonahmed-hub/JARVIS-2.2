@@ -1,0 +1,6 @@
+{
+  "name": "Jarvis Web Assistant",
+  "description": "A futuristic AI-powered voice assistant inspired by the Jarvis desktop project. Voice commands, AI chat, and immersive UI.",
+  "requestFramePermissions": ["microphone", "camera"],
+  "majorCapabilities": ["voice_interaction", "ai_chat", "system_simulation"]
+}

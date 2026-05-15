@@ -1,0 +1,26 @@
+# Netlify configuration for Jarvis Web Assistant
+[build]
+  # The directory to run the build command in
+  base = "/"
+  # The command to build the site
+  command = "npm run build"
+  # The directory that contains the deploy-ready static files
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA Redirects
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Security Headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
